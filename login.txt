@@ -1,0 +1,7 @@
+login 
+registration
+backend store all details here
+
+animation while user click on order button
+
+use socket.io here for realtime authentication

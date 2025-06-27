@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./output.css" />
+    <style>
+      .eye-icon {
+        width: 24px;
+        height: 24px;
+        fill: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body class="text-white min-h-screen flex items-center justify-center">
+    <div
+      class="absolute inset-0 z-0 bg-[url('assets/login.webp')] bg-cover bg-center blur-lg"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"
+      ></div>
+    </div>
+
+    <div
+      class="relative z-20 p-6 sm:w-[400px] rounded-2xl border border-green-200 shadow-lg shadow-green-700/40 overflow-hidden"
+    >
+      <form
+        class="flex flex-col gap-5 z-20 relative"
+        onsubmit="handleLogin(event)"
+        id="loginForm"
+      >
+        <h2 class="text-2xl font-bold text-center mb-4">Welcome Back</h2>
+
+        <div>
+          <label for="email" class="block text-sm mb-1">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            class="w-full p-2 text-white border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+            required
+          />
+        </div>
+
+        <div class="relative">
+          <label for="password" class="block text-sm mb-1">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            class="w-full p-2 pr-10 text-white border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+            required
+          />
+          <span class="absolute right-2 top-9" onclick="togglePassword()">
+            <svg id="eyeIcon" class="eye-icon" viewBox="0 0 24 24">
+              <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.04 0-5.5-2.46-5.5-5.5S8.96 6.5 12 6.5s5.5 2.46 5.5 5.5-2.46 5.5-5.5 5.5z"
+              />
+              <path d="M12 9a3 3 0 100 6 3 3 0 000-6z" />
+            </svg>
+          </span>
+        </div>
+
+        <button
+          type="submit"
+          class="group relative overflow-hidden px-6 py-2 font-semibold text-white border rounded-md cursor-pointer shadow-md hover:shadow-blue-500 transition-all duration-300"
+        >
+          <span
+            class="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-400 to-blue-600 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out opacity-80"
+          ></span>
+          <span class="relative z-10">Login</span>
+        </button>
+
+        <p class="text-sm text-center mt-2">
+          Don’t have an account?
+          <a href="/registration.html" class="text-blue-400 hover:underline"
+            >Register here</a
+          >
+        </p>
+      </form>
+    </div>
+
+    <script>
+      const handleLogin = (e) => {
+        e.preventDefault();
+        const formData = new FormData(document.getElementById("loginForm"));
+        const email = formData.get("email");
+        const password = formData.get("password");
+        console.log("Login Data:", { email, password });
+        alert("Login successful!");
+      };
+
+      function togglePassword() {
+        const input = document.getElementById("password");
+        const eye = document.getElementById("eyeIcon");
+
+        if (input.type === "password") {
+          input.type = "text";
+          eye.innerHTML = `
+            <path d="M12 6a9.77 9.77 0 0 1 8.94 5.5A9.77 9.77 0 0 1 12 17a9.77 9.77 0 0 1-8.94-5.5A9.77 9.77 0 0 1 12 6m0-1.5c-5 0-9.27 3.11-11 7.5 1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5C21.27 7.61 17 4.5 12 4.5z" />
+            <line x1="3" y1="3" x2="21" y2="21" stroke="white" stroke-width="2"/>
+          `;
+        } else {
+          input.type = "password";
+          eye.innerHTML = `
+            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 13c-3.04 0-5.5-2.46-5.5-5.5S8.96 6.5 12 6.5s5.5 2.46 5.5 5.5-2.46 5.5-5.5 5.5z"/>
+            <path d="M12 9a3 3 0 100 6 3 3 0 000-6z"/>
+          `;
+        }
+      }
+    </script>
+  </body>
+</html>
